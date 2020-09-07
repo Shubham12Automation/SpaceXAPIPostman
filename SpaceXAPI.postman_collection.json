@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "49adce5e-e058-42db-93d4-6fa6087134ad",
+		"name": "SpaceX API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SpaceX GET Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e20e8aba-70f2-4d72-a157-d2fead6831cc",
+						"exec": [
+							"tests[\"Validating Status Code\"] = responseCode.code == 200;\r",
+							"\r",
+							"pm.test(\"Validate Content-Type header\", () => {\r",
+							"  pm.response.to.be.header(\"Content-Type\" , \"application/json; charset=utf-8\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"var response = JSON.parse(responseBody);\r",
+							"tests [\"Validate Details\"] = response.details ==\"This mission will launch the eleventh batch of operational Starlink satellites, which are expected to be version 1.0, from SLC-40, Cape Canaveral Air Force Station. It is the twelfth Starlink launch overall. The satellites will be delivered to low Earth orbit and will spend a few weeks maneuvering to their operational altitude of 550 km. The booster for this mission is expected to land on an ASDS.\"; \r",
+							"tests [\"Validate Launch Time \"] = response.date_utc == \"2020-09-03T12:46:00.000Z\";"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.spacexdata.com/v4/launches/latest",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spacexdata",
+						"com"
+					],
+					"path": [
+						"v4",
+						"launches",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "822edfb5-e20d-4863-b1dc-39414c44a1fa",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2865316a-332a-43e0-b9b5-556e1a6e4d55",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
